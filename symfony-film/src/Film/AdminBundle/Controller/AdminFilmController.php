@@ -3,6 +3,8 @@
 namespace Film\AdminBundle\Controller;
 
 use Film\BiblioBundle\Entity\Film;
+use Film\BiblioBundle\Entity\Genre;
+use Film\BiblioBundle\Entity\Personne;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Component\HttpFoundation\Request;
@@ -179,7 +181,7 @@ class AdminFilmController extends Controller
         public function addAction03(Request $request)
     {
         $personne = new Personne(); 
-        $form_personne = $this->createForm(FilmType::class, $personne); 
+        $form_personne = $this->createForm(PersonneType::class, $personne); 
         $form_personne->handleRequest($request); 
         if ($form_personne->isSubmitted() && $form_personne->isValid()) { 
             $personne = $form_personne->getData(); 
