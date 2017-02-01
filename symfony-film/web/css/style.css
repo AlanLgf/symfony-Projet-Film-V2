@@ -1,0 +1,51 @@
+/* web/css/style.css */
+ul.menu {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+    background-color: #333;
+}
+
+ul.menu li {
+    float: left;
+}
+
+ul.menu li a {
+    display: block;
+    color: white;
+    text-align: center;
+    padding: 14px 16px;
+    text-decoration: none;
+}
+
+ul.menu li a:hover {
+    background-color: #111;
+}
+
+.montitre{
+    text-align: center;
+}
+
+.ratings {
+    padding-right: 10px;
+    padding-left: 10px;
+    color: #d17581;
+}
+
+ul{
+    padding: 0px !important;
+}
+
+.lead{
+    padding-top: 20px;
+}
+.monh2{
+    
+    padding-left: 26%;
+}
+
+h2{
+   padding-top: : 50px;
+   padding-bottom: 20px;
+}

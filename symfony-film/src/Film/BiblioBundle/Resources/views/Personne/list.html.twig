@@ -1,0 +1,52 @@
+{# src\Film\BiblioBundle\Resources\views\Personne\list.html.twig #}
+{% extends 'FilmBiblioBundle::layout.html.twig' %}
+
+{% block title %}Liste des Réalisateurs{% endblock %}
+
+{% block body %}
+
+ <div class="container">
+
+        <div class="row">
+
+            <div class="col-md-3">
+                <p class="lead">Cinéma</p>
+                <div class="list-group">
+                    <a href="{{ path('page_films')}}" class="list-group-item ">Films</a>
+                    <a href="{{ path('page_cine')}}" class="list-group-item active">Réalisateurs</a>
+                </div>
+            </div>
+
+            <div class="col-md-9">
+
+            <h2>Liste des realisateurs</h2>
+             <br />
+                    <ul class="liste">
+                        {% for personne in personnes %}
+                            <div class="well">
+                                <div class="row">
+                                    <div class="col-md-12">
+                                        <li style="list-style: none;">
+                                                <span><strong>{{ personne.nom }} {{ personne.prenom }}</strong></span>
+
+                                                <p> Né le {{ personne.dateNaissance | date ("d/m/Y")}}</p>
+                                         
+                                        </li>
+                                        <div class="text-right">
+                                        <a href="{{ path('page_real', {'id': personne.id}) }}" class="btn btn-success">Voir ses films</a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+
+
+
+                        {% endfor %}
+                    </ul>
+                    </div>
+                </div>
+            </div>
+
+
+{% endblock %}

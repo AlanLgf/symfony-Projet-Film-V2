@@ -1,0 +1,22 @@
+{# src\Film\BiblioBundle\Resources\views\Film\show.html.twig #}
+
+{% extends 'FilmBiblioBundle::layout.html.twig' %}
+
+{% block title %}{{ film.titre }}{% endblock %}
+
+{% block body %}
+
+<div class="thumbnail">
+    <div class="caption-full">
+		<h1>{{ film.titre }}</h1>
+
+			<span>Ecrit par {{ film.realisateur }}</span>
+
+			<p>{{ film.synopsis }}</p>
+			<div class="ratings">
+            <p class="pull-right">Date de sortie : {{ film.dateSortie|date("d/m/Y") }}</p>
+			<span>Genre : {{ film.genre }}</span>
+			<p><a href="{{ path('page_films') }}">Retour</a></p>
+	</div>
+</div>
+{% endblock %}

@@ -1,0 +1,19 @@
+{# src\Film\BiblioBundle\Resources\views\Personne\show.html.twig #}
+
+{% extends 'FilmBiblioBundle::layout.html.twig' %}
+
+{% block title %}{{ personne.prenom }}{{ personne.nom }}{% endblock %}
+
+{% block body %}
+
+<div class="thumbnail">
+    <div class="caption-full">
+		<h1>{{ personne.prenom }}{{ personne.nom }}</h1>
+
+			<div class="ratings">
+            <p class="pull-right">Date de naissance : {{ personne.dateNaissance|date("d/m/Y") }}</p>
+			
+			<p><a href="{{ path('page_cine') }}">Retour</a></p>
+	</div>
+</div>
+{% endblock %}
