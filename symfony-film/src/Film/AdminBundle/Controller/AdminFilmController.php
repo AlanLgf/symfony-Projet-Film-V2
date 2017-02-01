@@ -90,4 +90,83 @@ class AdminFilmController extends Controller
 
         return $this->redirectToRoute('admin_film_liste'); 
     }
+
+    /////////////////////////////////////////////////////////////////////////////////
+    /**
+    * @Route("/ajout-genre", name="admin_genre_ajout")
+    */
+        public function addAction02(Request $request)
+    {
+        $genre = new Film(); 
+        $form_genre = $this->createForm(FilmType::class, $genre); 
+        $form_genre->handleRequest($request); 
+        if ($form_genre->isSubmitted() && $form_genre->isValid()) { 
+            $genre = $form_genre->getData(); 
+            $em_genre = $this->getDoctrine()->getManager(); 
+            $em_genre->persist($genre);
+            $em_genre->flush(); 
+            return $this->redirectToRoute('admin_film_liste');
+        }
+
+        return $this->render(
+            'FilmAdminBundle:Genre:form.html.twig',
+            ['form_genre' => $form_genre->createView()]
+        );
+    }
+
+    /**
+    * @Route("/liste-genre", name="admin_genre_liste")
+    */
+    public function listAction02()
+    {
+        $genres = $this->getDoctrine()->getRepository('FilmBiblioBundle:Genre')->findAll();
+
+        return $this->render(
+            'FilmAdminBundle:Genre:list.html.twig',
+            ['genres' => $genres]
+        );
+    }
+
+    /**
+    * @Route("/modif-genre/{id}", name="admin_genre_modif", requirements={"id": "\d+"})
+    */
+    public function editAction02(Request $request, $id)
+    {
+        
+        $genre = $this->getDoctrine()->getRepository('FilmBiblioBundle:Genre')->find($id);
+
+        $form_genre = $this->createForm(GenreType::class, $genre); 
+
+        
+        $form_genre->handleRequest($request);
+
+        if ($form_genre->isSubmitted() && $form_genre->isValid()) {
+            $genre = $form_genre->getData();
+
+           $em_genre = $this->getDoctrine()->getManager();
+           $em_genre->persist($genre);
+           $em_genre->flush();
+
+             return $this->redirectToRoute('admin_genre_liste');
+         }
+
+        return $this->render(
+            'FilmAdminBundle:Genre:form.html.twig',
+            ['form_genre' => $form_genre->createView()]
+        );
+    }
+    /**
+    * @Route("/supprimer-genre/{id}", name="admin_genre_supprimer", requirements={"id": "\d+"})
+    */
+    public function deleteAction02($id)
+    {
+        
+        $genre = $this->getDoctrine()->getRepository('FilmBiblioBundle:Genre')->find($id);
+
+        $em_genre = $this->getDoctrine()->getManager(); 
+        $em_genre->remove($genre);
+        $em_genre->flush(); 
+
+        return $this->redirectToRoute('admin_genre_liste'); 
+    }
 }

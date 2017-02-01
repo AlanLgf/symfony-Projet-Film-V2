@@ -1,0 +1,19 @@
+{# src\Film\AdminBundle\Resources\views\Personne\list.html.twig #}
+{% extends 'FilmBiblioBundle::layout.html.twig' %}
+
+{% block title %}Liste des Realisateur{% endblock %}
+
+{% block body %}
+
+<h1>Liste des Realisateurs :</h1>
+<ul>
+{% for personne in personnes %}
+    <li>
+        <a href="{{ path('admin_personne_modif', {'id': personne.id}) }}">{{ personne.titre }}</a>
+        <a href="{{ path('admin_personne_supprimer', {'id': personne.id}) }}">(x)</a>
+    </li>
+{% endfor %}
+</ul>
+<a href="{{ path('admin_personne_ajout') }}">Ajouter</a>
+
+{% endblock %}

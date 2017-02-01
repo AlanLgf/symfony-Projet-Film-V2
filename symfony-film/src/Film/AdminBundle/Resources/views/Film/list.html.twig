@@ -1,4 +1,10 @@
 {# src\Film\AdminBundle\Resources\views\Film\list.html.twig #}
+{% extends 'FilmBiblioBundle::layout.html.twig' %}
+
+{% block title %}Liste des films{% endblock %}
+
+{% block body %}
+
 <h1>Liste des films :</h1>
 <ul>
 {% for film in films %}
@@ -9,3 +15,5 @@
 {% endfor %}
 </ul>
 <a href="{{ path('admin_film_ajout') }}">Ajouter</a>
+
+{% endblock %}
