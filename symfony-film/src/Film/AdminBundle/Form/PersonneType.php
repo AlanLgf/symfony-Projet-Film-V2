@@ -1,5 +1,5 @@
 <?php
-// src/Film/AdminBundle/Form/FilmType.php
+// src/Film/AdminBundle/Form/PersonneType.php
 namespace Film\AdminBundle\Form;
 
 use Symfony\Component\Form\AbstractType;

@@ -1,5 +1,9 @@
 {# src\Film\AdminBundle\Resources\views\Personne\form.html.twig #}
 {% extends 'FilmBiblioBundle::layout.html.twig' %}
+
+{% block body %}
 {{ form_start(form_personne) }}
 {{ form_widget(form_personne) }}
 {{ form_end(form_personne) }}
+
+{% endblock %}

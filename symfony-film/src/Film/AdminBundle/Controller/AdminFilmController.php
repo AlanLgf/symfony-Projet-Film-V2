@@ -7,6 +7,8 @@ use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Component\HttpFoundation\Request;
 use Film\AdminBundle\Form\FilmType;
+use Film\AdminBundle\Form\GenreType;
+use Film\AdminBundle\Form\PersonneType;
 
 /**
 * @Route("/admin/films")
@@ -97,15 +99,15 @@ class AdminFilmController extends Controller
     */
         public function addAction02(Request $request)
     {
-        $genre = new Film(); 
-        $form_genre = $this->createForm(FilmType::class, $genre); 
+        $genre = new Genre(); 
+        $form_genre = $this->createForm(GenreType::class, $genre); 
         $form_genre->handleRequest($request); 
         if ($form_genre->isSubmitted() && $form_genre->isValid()) { 
             $genre = $form_genre->getData(); 
             $em_genre = $this->getDoctrine()->getManager(); 
             $em_genre->persist($genre);
             $em_genre->flush(); 
-            return $this->redirectToRoute('admin_film_liste');
+            return $this->redirectToRoute('admin_genre_liste');
         }
 
         return $this->render(
@@ -168,5 +170,84 @@ class AdminFilmController extends Controller
         $em_genre->flush(); 
 
         return $this->redirectToRoute('admin_genre_liste'); 
+    }
+
+    /////////////////////////////////////////////////////////////////////////////////
+    /**
+    * @Route("/ajout-personne", name="admin_personne_ajout")
+    */
+        public function addAction03(Request $request)
+    {
+        $personne = new Personne(); 
+        $form_personne = $this->createForm(FilmType::class, $personne); 
+        $form_personne->handleRequest($request); 
+        if ($form_personne->isSubmitted() && $form_personne->isValid()) { 
+            $personne = $form_personne->getData(); 
+            $em_personne = $this->getDoctrine()->getManager(); 
+            $em_personne->persist($personne);
+            $em_personne->flush(); 
+            return $this->redirectToRoute('admin_personne_liste');
+        }
+
+        return $this->render(
+            'FilmAdminBundle:Personne:form.html.twig',
+            ['form_personne' => $form_personne->createView()]
+        );
+    }
+
+    /**
+    * @Route("/liste-personne", name="admin_personne_liste")
+    */
+    public function listAction03()
+    {
+        $personnes = $this->getDoctrine()->getRepository('FilmBiblioBundle:Personne')->findAll();
+
+        return $this->render(
+            'FilmAdminBundle:Personne:list.html.twig',
+            ['personnes' => $personnes]
+        );
+    }
+
+    /**
+    * @Route("/modif-personne/{id}", name="admin_personne_modif", requirements={"id": "\d+"})
+    */
+    public function editAction03(Request $request, $id)
+    {
+        
+        $personne = $this->getDoctrine()->getRepository('FilmBiblioBundle:Personne')->find($id);
+
+        $form_personne = $this->createForm(PersonneType::class, $personne); 
+
+        
+        $form_personne->handleRequest($request);
+
+        if ($form_personne->isSubmitted() && $form_personne->isValid()) {
+            $personne = $form_personne->getData();
+
+           $em_personne = $this->getDoctrine()->getManager();
+           $em_personne->persist($personne);
+           $em_personne->flush();
+
+             return $this->redirectToRoute('admin_personne_liste');
+         }
+
+        return $this->render(
+            'FilmAdminBundle:Personne:form.html.twig',
+            ['form_personne' => $form_personne->createView()]
+        );
+    }
+    /**
+    * @Route("/supprimer-personne/{id}", name="admin_personne_supprimer", requirements={"id": "\d+"})
+    */
+    public function deleteAction03($id)
+    {
+        
+        $personne = $this->getDoctrine()->getRepository('FilmBiblioBundle:Personne')->find($id);
+
+        $em_personne = $this->getDoctrine()->getManager(); 
+        $em_personne->remove($personne);
+        $em_personne->flush(); 
+
+        return $this->redirectToRoute('admin_personne_liste'); 
     }
 }

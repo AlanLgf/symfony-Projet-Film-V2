@@ -5,15 +5,20 @@
 
 {% block body %}
 
-<h1>Liste des films :</h1>
+<h1 class="monh1">Liste des films :</h1>
 <ul>
 {% for film in films %}
+	<div class ="well monwell">
+	<div class ="row">
+
     <li>
-        <a href="{{ path('admin_film_modif', {'id': film.id}) }}">{{ film.titre }}</a>
-        <a href="{{ path('admin_film_supprimer', {'id': film.id}) }}">(x)</a>
+        <a href="{{ path('admin_film_modif', {'id': film.id}) }}" class="nom_liste">{{ film.titre }} </a>
+        <a href="{{ path('admin_film_supprimer', {'id': film.id}) }}" class = "btn btn-danger goright">Supprimer</a>
     </li>
+    </div>
+    </div>
 {% endfor %}
 </ul>
-<a href="{{ path('admin_film_ajout') }}">Ajouter</a>
+<a href="{{ path('admin_film_ajout') }}" class = "btn btn-primary monw" style="margin:0 125px;">Ajouter</a>
 
 {% endblock %}

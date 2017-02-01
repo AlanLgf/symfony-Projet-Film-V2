@@ -5,15 +5,20 @@
 
 {% block body %}
 
-<h1>Liste des Realisateurs :</h1>
+<h1 class="monh1">Liste des réalisateurs :</h1>
 <ul>
 {% for personne in personnes %}
+<div class ="well monwell">
+	<div class ="row">
+
     <li>
-        <a href="{{ path('admin_personne_modif', {'id': personne.id}) }}">{{ personne.titre }}</a>
-        <a href="{{ path('admin_personne_supprimer', {'id': personne.id}) }}">(x)</a>
+        <a href="{{ path('admin_personne_modif', {'id': personne.id}) }}" class="nom_liste">{{ personne.prenom }} {{ personne.nom }}</a>
+        <a href="{{ path('admin_personne_supprimer', {'id': personne.id}) }}" class = "btn btn-danger goright">Supprimer</a>
     </li>
+    </div>
+    </div>
 {% endfor %}
 </ul>
-<a href="{{ path('admin_personne_ajout') }}">Ajouter</a>
+<a href="{{ path('admin_personne_ajout') }}" class = "btn btn-primary monw" style="margin:0 125px;">Ajouter</a>
 
 {% endblock %}

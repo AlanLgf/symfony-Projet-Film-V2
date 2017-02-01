@@ -107,7 +107,7 @@ class Personne
     /**
      * Set dateNaissance
      *
-     * @param \DateTime $dateNaissance
+     * @param \Date $dateNaissance
      * @return Personne
      */
     public function setDateNaissance($dateNaissance)
@@ -120,7 +120,7 @@ class Personne
     /**
      * Get dateNaissance
      *
-     * @return \DateTime 
+     * @return \Date
      */
     public function getDateNaissance()
     {
