@@ -7,5 +7,11 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 
 class DefaultController extends Controller
 {
-
+	/**
+     * @Route("/admin", name="index_admin")
+     */
+    public function indexAdminAction()
+    {
+        return $this->render('FilmAdminBundle:Default:index.html.twig');
+    }
 }

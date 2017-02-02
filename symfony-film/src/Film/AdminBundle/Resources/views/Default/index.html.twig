@@ -1,1 +1,22 @@
-Hello World!
+{# src\Film\AdminBundle\Resources\views\Default\index.html.twig #}
+{% extends 'FilmBiblioBundle::layout.html.twig' %}
+
+{% block title %} Administrateur {% endblock %}
+
+{% block body %}
+<div class="col-md-12 center">
+	<h1>Adminstration du site</h1>
+
+
+	<p>Que voulez vous modifier :</p>
+
+		<a href="{{ path('admin_film_liste') }}" class="btn btn-info">Films</a>
+
+
+		<a href="{{ path('admin_genre_liste') }}" class="btn btn-default">Genres</a>
+
+		<a href="{{ path('admin_personne_liste') }}" class="btn btn-warning">Réalisateurs</a>
+
+</div>
+
+{% endblock %}
