@@ -64,10 +64,11 @@ class DefaultController extends Controller
     public function showAction02($id)
     {
         $personne = $this->getDoctrine()->getRepository('FilmBiblioBundle:Personne')->find($id);
+        $films = $this->getDoctrine()->getRepository('FilmBiblioBundle:Film')->findByRealisateur($id);
 
     return $this->render(
         'FilmBiblioBundle:Personne:show.html.twig',
-        ['personne' => $personne]
+        ['personne' => $personne, 'films' => $films]
     );
     }
 }

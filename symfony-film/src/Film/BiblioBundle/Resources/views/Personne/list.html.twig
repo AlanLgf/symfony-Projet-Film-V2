@@ -30,6 +30,7 @@
                                                 <span><strong>{{ personne.nom }} {{ personne.prenom }}</strong></span>
 
                                                 <p> Né le {{ personne.dateNaissance | date ("d/m/Y")}}</p>
+                                                <p>({{"now"|date("Y") - personne.dateNaissance | date ("Y")}} ans)</p>
                                          
                                         </li>
                                         <div class="text-right">
